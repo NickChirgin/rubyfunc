@@ -3,14 +3,13 @@ module Exercise
     class << self
       def replace(array)
         max = array.max
-        return array.map{ |el| el >= 0 ? max : el }
+        array.map { |el| el >= 0 ? max : el }
       end
 
       def search(_array, _query)
-        if _array.include?(_query)
-          return _array.find_index(_query)
-        end
-        return -1  
+        return _array.find_index(_query) if _array.include?(_query)
+
+        -1
       end
     end
   end
