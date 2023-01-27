@@ -13,16 +13,29 @@ module Exercise
 
       # Написать свою функцию my_map
       def my_map(&func)
-        out = MyArray.new()
-          self.my_each { |e| out << yield(e) }
-        out
+        result = MyArray.new()
+          self.my_each { |e| result << yield(e) }
+        result
       end
 
       # Написать свою функцию my_compact
-      def my_compact; end
+      def my_compact
+        result = MyArray.new()
+          self.my_each { |e| result << e if !e.nil? }
+        result
+      end
 
       # Написать свою функцию my_reduce
-      def my_reduce; end
+      def my_reduce(start = 0)
+        result = start
+        result = 1 if yield(result, self[0]) == 0
+        for n in self do
+
+          current_result = yield(result, n)
+          result = current_result
+        end
+        result
+      end
     end
   end
 end
